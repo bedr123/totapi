@@ -39,7 +39,7 @@ class PicturesController extends Controller
     {
         $data = $request->validate([
             'year' => 'required|integer',
-            'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'image' => 'required|mimes:png,jpg,jpeg|max:20048',
             'description' => 'required|string',
             'link' => 'required|url'
         ]);
@@ -49,7 +49,7 @@ class PicturesController extends Controller
        
             $request->image->move(public_path('images'), $imageName);
 
-            $data['image'] = config('app:url') . '/images/' . $imageName;
+            $data['image'] = config('app.url') . '/images/' . $imageName;
         }
 
         $data['is_current'] = false;
@@ -67,7 +67,7 @@ class PicturesController extends Controller
 
         $data = $request->validate([
             'year' => 'integer',
-            'image' => 'mimes:png,jpg,jpeg|max:2048',
+            'image' => 'mimes:png,jpg,jpeg|max:20048',
             'description' => 'string',
             'link' => 'url'
         ]);
@@ -77,7 +77,7 @@ class PicturesController extends Controller
        
             $request->image->move(public_path('images'), $imageName);
 
-            $data['image'] = config('app:url') . '/images/' . $imageName;
+            $data['image'] = config('app.url') . '/images/' . $imageName;
         }
 
         $picture->update($data);
