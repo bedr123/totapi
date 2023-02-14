@@ -54,6 +54,12 @@ class PicturesController extends Controller
 
         $data['is_current'] = false;
 
+        if (count(Picture::get()) == 0) {
+            $data['num_of_pic'] = 1;
+        } else {
+            $data['num_of_pic'] = Picture::latest()->first()->num_of_pic + 1;
+        }
+
         Picture::create($data);
 
         $pictures = Picture::orderBy('created_at', 'DESC')->paginate(10);

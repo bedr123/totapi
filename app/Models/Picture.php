@@ -13,6 +13,7 @@ class Picture extends Model
         'year',
         'image',
         'link',
-        'description'
+        'description',
+        'num_of_pic'
     ];
 }
