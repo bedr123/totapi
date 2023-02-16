@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('current:pic')
             ->timezone('America/New_York')
-            ->dailyAt('8:00');
+            ->dailyAt('6:00');
     }
 
     /**
