@@ -23,24 +23,16 @@ class StatisticsController extends Controller
         $user = Auth::user();
 
         $user->statistics->update([
-            'overall_played' => $request->overall['gamesPlayed'],
-            'overall_win_percentage' => $request->overall['winPercentage'],
-            'overall_current_streak' => $request->overall['currentStreak'],
-            'overall_max_streak' => $request->overall['maxStreak'],
-            'overall_guess_ditribution' => $request->overall['guesses'],
-            'overall_average_guesses' => $request->overall['averageGuesses'],
-            'overall_games_won' => $request->overall['gamesWon'],
-            'overall_lost_in_a_row' => $request->overall['lostInARow'],
-            'overall_played_this_month' => $request->overall['playedThisMonth'],
-            'overall_played_last_month' => $request->overall['playedLastMonth'],
-            'monthly_played' => $request->monthly['gamesPlayed'],
-            'monthly_win_percentage' => $request->monthly['winPercentage'],
-            'monthly_current_streak' => $request->monthly['currentStreak'],
-            'monthly_max_streak' => $request->monthly['maxStreak'],
-            'monthly_guess_ditribution' => $request->monthly['guesses'],
-            'monthly_average_guesses' => $request->monthly['averageGuesses'],
-            'monthly_games_won' => $request->monthly['gamesWon'],
-            'monthly_lost_in_a_row' => $request->monthly['lostInARow'],
+            'overall_played' => $request->gamesPlayed,
+            'overall_win_percentage' => $request->winPercentage,
+            'overall_current_streak' => $request->currentStreak,
+            'overall_max_streak' => $request->maxStreak,
+            'overall_guess_ditribution' => $request->guesses,
+            'overall_average_guesses' => $request->averageGuesses,
+            'overall_games_won' => $request->gamesWon,
+            'overall_lost_in_a_row' => $request->lostInARow,
+            'overall_played_this_month' => $request->playedThisMonth,
+            'overall_played_last_month' => $request->playedLastMonth,
         ]);
 
         return response()->json([
