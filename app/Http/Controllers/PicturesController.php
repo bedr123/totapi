@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Picture;
 use Illuminate\Support\Str;
+use App\Utils\Roles;
+use Illuminate\Support\Facades\Auth;
 
 class PicturesController extends Controller
 {
@@ -16,6 +18,13 @@ class PicturesController extends Controller
 
     public function index()
     {
+        if (Auth::user()->role != Roles::admin_role) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Forbidden',
+            ], 403);
+        }
+
         $pictures = Picture::orderBy('created_at', 'DESC')->paginate(10);
 
         return response()->json($pictures);
@@ -23,6 +32,13 @@ class PicturesController extends Controller
 
     public function show(int $id)
     {
+        if (Auth::user()->role != Roles::admin_role) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Forbidden',
+            ], 403);
+        }
+
         $picture = Picture::find($id);
 
         return response()->json($picture);
@@ -37,6 +53,13 @@ class PicturesController extends Controller
 
     public function store(Request $request)
     {
+        if (Auth::user()->role != Roles::admin_role) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Forbidden',
+            ], 403);
+        }
+
         $data = $request->validate([
             'year' => 'required|integer',
             'image' => 'required|mimes:png,jpg,jpeg|max:20048',
@@ -69,6 +92,13 @@ class PicturesController extends Controller
 
     public function update(Request $request, int $id)
     {
+        if (Auth::user()->role != Roles::admin_role) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Forbidden',
+            ], 403);
+        }
+
         $picture = Picture::find($id);
 
         $data = $request->validate([
@@ -95,6 +125,13 @@ class PicturesController extends Controller
 
     public function activate(int $id)
     {
+        if (Auth::user()->role != Roles::admin_role) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Forbidden',
+            ], 403);
+        }
+
         $picture = Picture::find($id);
 
         if (!$picture->is_current) {
@@ -126,6 +163,13 @@ class PicturesController extends Controller
 
     public function destroy(int $id)
     {
+        if (Auth::user()->role != Roles::admin_role) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Forbidden',
+            ], 403);
+        }
+
         $picture = Picture::find($id);
 
         if ($picture) {
