@@ -30,9 +30,9 @@ class StatisticsController extends Controller
             'overall_guess_ditribution' => $request->guesses,
             'overall_average_guesses' => $request->averageGuesses,
             'overall_games_won' => $request->gamesWon,
-            'overall_lost_in_a_row' => $request->lostInARow,
-            'overall_played_this_month' => $request->playedThisMonth,
-            'overall_played_last_month' => $request->playedLastMonth,
+            'overall_lost_in_a_row' => $request->lostInARow ? $request->lostInARow : 0,
+            'overall_played_this_month' => $request->playedThisMonth ? $request->playedThisMonth : false,
+            'overall_played_last_month' => $request->playedLastMonth ? $request->playedLastMonth : false,
         ]);
 
         return response()->json([
