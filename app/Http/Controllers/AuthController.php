@@ -84,9 +84,9 @@ class AuthController extends Controller
                 'overall_guess_ditribution' => $request->overall['guesses'],
                 'overall_average_guesses' => $request->overall['averageGuesses'],
                 'overall_games_won' => $request->overall['gamesWon'],
-                'overall_lost_in_a_row' => $request->overall['lostInARow'],
-                'overall_played_this_month' => $request->overall['playedThisMonth'],
-                'overall_played_last_month' => $request->overall['playedLastMonth'],
+                'overall_lost_in_a_row' => array_key_exists('lostInARow', $request->overall) ? $request->overall['lostInARow'] : 0,
+                'overall_played_this_month' => array_key_exists('playedThisMonth', $request->overall) ? $request->overall['playedThisMonth'] : false,
+                'overall_played_last_month' => array_key_exists('playedLastMonth', $request->overall) ? $request->overall['playedLastMonth'] : false,
                 'monthly_played' => $request->monthly['gamesPlayed'],
                 'monthly_win_percentage' => $request->monthly['winPercentage'],
                 'monthly_current_streak' => $request->monthly['currentStreak'],
@@ -94,7 +94,7 @@ class AuthController extends Controller
                 'monthly_guess_ditribution' => $request->monthly['guesses'],
                 'monthly_average_guesses' => $request->monthly['averageGuesses'],
                 'monthly_games_won' => $request->monthly['gamesWon'],
-                'monthly_lost_in_a_row' => $request->monthly['lostInARow'],          
+                'monthly_lost_in_a_row' => array_key_exists('lostInARow', $request->monthly) ? $request->monthly['lostInARow'] : 0,   
             ]);
         }
      
@@ -131,9 +131,9 @@ class AuthController extends Controller
                 'overall_guess_ditribution' => $request->overall['guesses'],
                 'overall_average_guesses' => $request->overall['averageGuesses'],
                 'overall_games_won' => $request->overall['gamesWon'],
-                'overall_lost_in_a_row' => $request->overall['lostInARow'],
-                'overall_played_this_month' => $request->overall['playedThisMonth'],
-                'overall_played_last_month' => $request->overall['playedLastMonth'],
+                'overall_lost_in_a_row' => array_key_exists('lostInARow', $request->overall) ? $request->overall['lostInARow'] : 0,
+                'overall_played_this_month' => array_key_exists('playedThisMonth', $request->overall) ? $request->overall['playedThisMonth'] : false,
+                'overall_played_last_month' => array_key_exists('playedLastMonth', $request->overall) ? $request->overall['playedLastMonth'] : false,
                 'monthly_played' => $request->monthly['gamesPlayed'],
                 'monthly_win_percentage' => $request->monthly['winPercentage'],
                 'monthly_current_streak' => $request->monthly['currentStreak'],
@@ -141,7 +141,7 @@ class AuthController extends Controller
                 'monthly_guess_ditribution' => $request->monthly['guesses'],
                 'monthly_average_guesses' => $request->monthly['averageGuesses'],
                 'monthly_games_won' => $request->monthly['gamesWon'],
-                'monthly_lost_in_a_row' => $request->monthly['lostInARow'],       
+                'monthly_lost_in_a_row' => array_key_exists('lostInARow', $request->monthly) ? $request->monthly['lostInARow'] : 0,       
             ]);
         }
      
