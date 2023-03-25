@@ -67,7 +67,7 @@ class StatisticsController extends Controller
 
     public function getLeaderboard()
     {
-        $users = User::join('statistics', 'users.id', '=', 'statistics.user_id')->orderBy('statistics.overall_games_won', 'desc')->orderBy('statistics.overall_current_streak', 'desc')->select('users.*')->take(5)->get();
+        $users = User::join('statistics', 'users.id', '=', 'statistics.user_id')->orderBy('statistics.overall_current_streak', 'desc')->orderBy('statistics.overall_games_won', 'desc')->select('users.*')->take(5)->get();
 
         return UserResource::collection($users);
     }
