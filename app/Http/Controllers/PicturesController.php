@@ -13,7 +13,7 @@ class PicturesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['showActive']]);
+        $this->middleware('auth:api', ['except' => ['showActive', 'archive', 'show']]);
     }
 
     public function index()
@@ -32,13 +32,6 @@ class PicturesController extends Controller
 
     public function show(int $id)
     {
-        if (Auth::user()->role != Roles::admin_role) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Forbidden',
-            ], 403);
-        }
-
         $picture = Picture::find($id);
 
         return response()->json($picture);
@@ -177,6 +170,13 @@ class PicturesController extends Controller
         }
 
         $pictures = Picture::orderBy('created_at', 'DESC')->paginate(10);
+
+        return response()->json($pictures);
+    }
+
+    public function archive()
+    {
+        $pictures = Picture::orderBy('created_at', 'DESC')->paginate(2);
 
         return response()->json($pictures);
     }

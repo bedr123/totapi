@@ -186,4 +186,11 @@ class AuthController extends Controller
             ]
         ]);
     }
+
+    public function getUsers()
+    {
+        $users = User::get();
+
+        return response()->json($users);
+    }
 }

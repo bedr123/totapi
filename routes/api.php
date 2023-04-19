@@ -14,6 +14,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('google-login/{token}', 'googleLogin');
     Route::post('facebook-login/{token}', 'facebookLogin');
     Route::get('me', 'me');
+    Route::get('users', 'getUsers');
 });
 
 Route::controller(PicturesController::class)->group(function () {
@@ -24,10 +25,12 @@ Route::controller(PicturesController::class)->group(function () {
     Route::put('pictures/{id}', 'update');
     Route::patch('pictures/{id}', 'activate');
     Route::delete('pictures/{id}', 'destroy');
+    Route::get('archive', 'archive');
 }); 
 
 Route::controller(StatisticsController::class)->group(function () {
     Route::put('statistics/update', 'updateStatistics');
     Route::get('statistics/monthly/reset', 'resetMonthlyStatistics');
     Route::get('leaderboard', 'getLeaderboard');
+    Route::get('leader', 'getLeader');
 }); 

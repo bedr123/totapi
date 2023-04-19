@@ -71,4 +71,13 @@ class StatisticsController extends Controller
 
         return UserResource::collection($users);
     }
+
+    public function getLeader()
+    {
+        $user = User::join('statistics', 'users.id', '=', 'statistics.user_id')->orderBy('statistics.overall_max_streak', 'desc')->orderBy('statistics.overall_games_won', 'desc')->select('users.*')->first();
+
+        return response()->json([
+            'user' => new UserResource($user)
+        ]);
+    }
 }
